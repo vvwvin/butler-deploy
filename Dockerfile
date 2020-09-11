@@ -6,6 +6,7 @@ RUN unzip butler.zip && rm butler.zip
 RUN chmod +x butler
 
 FROM ubuntu:18.04
-COPY --from=download /dl /butler
-ENV PATH=$PATH:/butler
+COPY --from=download /etc/ssl/certs /etc/ssl/certs
+COPY --from=download /dl /butler-cli
+ENV PATH $PATH:/butler-cli
 CMD butler -V
